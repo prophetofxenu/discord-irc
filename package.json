@@ -1,10 +1,11 @@
 {
-  "name": "discord-irc",
-  "version": "2.9.0",
-  "description": "Connects IRC and Discord channels by sending messages back and forth.",
+  "name": "discord-irc-matrix",
+  "version": "1.0.0",
+  "description": "Connects IRC, Discord, and Matrix channels by sending messages back and forth.",
   "keywords": [
     "discord",
     "irc",
+    "matrix",
     "gateway",
     "bot",
     "discord-irc",
@@ -17,10 +18,10 @@
   "bin": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:reactiflux/discord-irc.git"
+    "url": "git@github.com:prophetofxenu/discord-irc-matrix.git"
   },
   "bugs": {
-    "url": "https://github.com/reactiflux/discord-irc/issues"
+    "url": "https://github.com/prophetofxenu/discord-irc-matrix/issues"
   },
   "scripts": {
     "start": "node dist/index.js",
