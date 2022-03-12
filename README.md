@@ -1,5 +1,3 @@
-Forked from [discord-irc](https://github.com/reactiflux/discord-irc)
-
 [![Coverage Status](https://coveralls.io/repos/github/reactiflux/discord-irc/badge.svg?branch=main)](https://coveralls.io/github/reactiflux/discord-irc?branch=main)
 
 > Connects [Discord](https://discord.com/) and [IRC](https://www.ietf.org/rfc/rfc1459.txt) channels by sending messages back and forth.
@@ -61,6 +59,10 @@ Otherwise, you may get the error "illegal operation on a directory".
 ## Configuration
 First you need to create a Discord bot user, which you can do by following the instructions [here](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token).
 
+For the Matrix bot, create a new user (the bridge), and then [find the matrix access token](https://webapps.stackexchange.com/questions/131056): `curl -XPOST -d '{"type":"m.login.password", "user":"bridge", "password":"<your password>"}' "http://localhost:8008/_matrix/client/api/v1/login"`. The bot's access token is changed at each login.
+
+The `matrixBaseUrl` requires the full URL and not the [well-known URI](https://matrix-org.github.io/synapse/latest/setup/installation.html#client-well-known-uri).
+
 ### Example configuration
 ```js
 [
@@ -71,7 +73,11 @@ First you need to create a Discord bot user, which you can do by following the i
     "discordToken": "botwantsin123",
     "channelMapping": {
       "#other-discord": "#new-irc-channel"
-    }
+    },
+    "matrixMapping": { "!AbCdefGhIjk:matrix.example.com": {"discord":"#other-discord", "irc":"#new-irc-channel"} },
+    "matrixAccessToken":"<matrix token>",
+    "matrixUserId":"@bridge:matrix.example.com",
+    "matrixBaseUrl":"https://matrix.example.com"
   },
 
   // Bot 2 (advanced options):
@@ -88,6 +94,10 @@ First you need to create a Discord bot user, which you can do by following the i
       "#discord": "#irc channel-password", // Add channel keys after the channel name
       "1234567890": "#channel" // Use a discord channel ID instead of its name (so you can rename it or to disambiguate)
     },
+    "matrixMapping": { "!AbCdefGhIjk:matrix.org": {"discord":"#other-discord", "irc":"#new-irc-channel"} },
+    "matrixAccessToken":"<matrix token>",
+    "matrixUserId":"@bridge:matrix.org",
+    "matrixBaseUrl":"https://matrix.org",
     "ircOptions": { // Optional node-irc options
       "floodProtection": false, // On by default
       "floodProtectionDelay": 1000, // 500 by default
